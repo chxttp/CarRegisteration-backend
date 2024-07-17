@@ -103,6 +103,17 @@ app.delete('/api/car/:car', async (req, res) => {
   }
 });
 
+// Get all cars
+app.get('/api/cars', async (req, res) => {
+    try {
+      const cars = await Car.find({});
+      res.json(cars);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
